@@ -1,12 +1,19 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import {Navigation} from 'react-native-navigation';
+import {registeredscreens} from './src/screens/screens-register';
 
-const App = () => {
-  return (
-    <View>
-      <Text>MY App</Text>
-    </View>
-  );
-};
-
-export default App;
+registeredscreens();
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'com.insta_frontend.Auth',
+            },
+          },
+        ],
+      },
+    },
+  });
+});
